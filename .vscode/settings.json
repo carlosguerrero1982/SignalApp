@@ -1,0 +1,11 @@
+{
+    "jshint.enable": false,
+    "jshint.config": "",
+    "jshint.options": {
+    
+    },
+    "prettier.jsxBracketSameLine": true,
+    "files.associations": {
+        "*.js": "javascriptreact"
+    }
+}
