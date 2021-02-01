@@ -11,7 +11,7 @@ const LoginScreen = ({navigation}) => {
 
   const  signin = () =>{
 
-    console.log("login");
+   // console.log("login");
     console.log(email);
     console.log(password);
     }
