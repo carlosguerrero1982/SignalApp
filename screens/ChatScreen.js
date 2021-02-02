@@ -74,6 +74,12 @@ const ChatScreen = ({route,navigation}) => {
     }, [navigation])
 
 
+    const sendMessage=()=>{
+
+
+    }
+
+
     return (
         <SafeAreaView style={{flex:1,backgroundColor:'white'}}> 
            
@@ -101,6 +107,13 @@ const ChatScreen = ({route,navigation}) => {
                         value={input}
                         onChangeText={(text)=>setInput(text)}
                          />
+
+                         <TouchableOpacity onPress={sendMessage} activeOpacity={0.5}>
+
+                            <Ionicons name="send" size={24} color="#2B68E6" />
+
+                         </TouchableOpacity>
+
 
                     </View>
 
