@@ -1,7 +1,9 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import { View, Text,StyleSheet,KeyboardAvoidingView } from 'react-native';
 import {Button,Input,Image} from 'react-native-elements';
 import {StatusBar} from 'expo-status-bar';
+import {auth} from '../firebase';
+
 
 const LoginScreen = ({navigation}) => {
 
@@ -9,11 +11,26 @@ const LoginScreen = ({navigation}) => {
 
     const [password, setPassword] = useState('');
 
+    useEffect(() => {
+      
+    const unsuscribe =auth.onAuthStateChanged((authUser)=>{
+
+            if(authUser){
+                navigation.replace("Home");
+             console.log(authUser);
+              //  console.log(authUser.photoURL);
+            }
+        })
+
+        return unsuscribe;
+    }, []);
+
+
   const  signin = () =>{
 
-   // console.log("login");
-    console.log(email);
-    console.log(password);
+    auth.signInWithEmailAndPassword(email,password)
+    .catch(error=>alert(error.message))
+  
     }
 
     return (
@@ -37,7 +54,7 @@ const LoginScreen = ({navigation}) => {
                  />
                 
                 <Input placeholder="Password" type="password" secureTextEntry value={password}
-                onChangeText={text => setPassword(text)}
+                onChangeText={text => setPassword(text)} onSubmitEditing={signin}
                  />
 
 

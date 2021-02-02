@@ -2,7 +2,7 @@ import React,{useState,useLayoutEffect} from 'react';
 import { KeyboardAvoidingView,StyleSheet,View } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import {Button,Input,Text} from 'react-native-elements';
-
+import {auth} from '../firebase';
 
 const RegisterScreen = ({navigation}) => {
 
@@ -15,7 +15,7 @@ const RegisterScreen = ({navigation}) => {
        
         navigation.setOptions({
 
-            headerTitle:"Login",
+            headerTitle:" Back to Login",
            
              
         });
@@ -24,7 +24,20 @@ const RegisterScreen = ({navigation}) => {
 
     const register=()=>{
 
-    
+    auth.createUserWithEmailAndPassword(email,password)
+    .then((authUser)=>{
+
+        
+        
+        authUser.user.updateProfile({
+            displayName:name,
+            photoURL:imageUrl || "https://cencup.com/wp-content/uploads/2019/07/avatar-placeholder.png",
+
+        })
+
+        
+
+    }).catch(error=>alert(error.message));
 
     }
 
